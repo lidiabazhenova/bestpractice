@@ -3,33 +3,43 @@ package com.myorganization.app.dao.impl;
 import com.myorganization.app.dao.PostDao;
 import com.myorganization.app.model.Post;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class PostDaoImpl implements PostDao {
 
     private static final Map<Long, Post> posts = new HashMap<>();
 
-    public PostDaoImpl() {
-        final Post post1 = new Post(1, "post 1", "content1", 1);
-        posts.put(post1.getId(), post1);
-
-        final Post post2 = new Post(2, "post 2", "content2", 2);
-        posts.put(post2.getId(), post2);
-    }
-
+    @Override
     public long createPost(Post post) {
-        post.setId(System.currentTimeMillis());
-        posts.put(post.getId(), post);
+        long id = System.currentTimeMillis();
+        post.setId(id);
 
-        return post.getId();
+        posts.put(id, post);
+
+        return id;
     }
 
+    @Override
     public void deletePostById(long id) {
         posts.remove(id);
     }
 
+    @Override
     public Post getPostById(long id) {
         return posts.get(id);
     }
+
+    @Override
+    public List<Post> getAllPosts() {
+        return new ArrayList<>(posts.values());
+    }
+
+    @Override
+    public void deleteAllPosts() {
+        posts.clear();
+    }
+
 }

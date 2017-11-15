@@ -11,8 +11,7 @@ public class User {
     private String name;
     private List<ERight> rights;
 
-    public User(long id, String name, List<ERight> rights) {
-        this.id = id;
+    public User(String name, List<ERight> rights) {
         this.name = name;
         this.rights = rights;
     }

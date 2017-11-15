@@ -8,10 +8,9 @@ public class Post {
     private long id;
     private String title;
     private String content;
-    private int userId;
+    private long userId;
 
-    public Post(long id, String title, String content, int userId) {
-        this.id = id;
+    public Post(String title, String content, long userId) {
         this.title = title;
         this.content = content;
         this.userId = userId;
@@ -41,11 +40,11 @@ public class Post {
         this.content = content;
     }
 
-    public int getUserId() {
+    public long getUserId() {
         return userId;
     }
 
-    public void setUserId(int userId) {
+    public void setUserId(long userId) {
         this.userId = userId;
     }
 
