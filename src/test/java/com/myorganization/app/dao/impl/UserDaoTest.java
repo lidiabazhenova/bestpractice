@@ -14,38 +14,36 @@ public class UserDaoTest {
 
     private UserDao userDao = new UserDaoImpl();
     private User user;
-    User storedUser;
-    private List<ERight> eRight;
 
     @Before
     public void setUp() {
         userDao.deleteAllUsers();
-        eRight=new ArrayList<>();
+
+        final List<ERight> eRight = new ArrayList<>();
         eRight.add(ERight.POST_READ);
         user = new User("Name", eRight);
         userDao.createUser(user);
-        storedUser = userDao.getUserById(user.getId());
     }
+
     @Test
     public void testCreateUser() {
-        User storedPost = userDao.getUserById(user.getId());
+        final User storedUser = userDao.getUserById(user.getId());
         Assert.assertTrue(user.equals(storedUser));
     }
 
     @Test
     public void testDeleteUserById() {
-
+        User storedUser = userDao.getUserById(user.getId());
         Assert.assertNotNull(storedUser);
-
         userDao.deleteUserById(user.getId());
 
-        storedUser = userDao.getUserById(user.getId());;
+        storedUser = userDao.getUserById(user.getId());
         Assert.assertNull(storedUser);
     }
 
     @Test
     public void testGetUserById() {
-
+        final User storedUser = userDao.getUserById(user.getId());
         Assert.assertTrue(user.equals(storedUser));
     }
 

@@ -4,8 +4,6 @@ import com.myorganization.app.exception.AccessDeniedException;
 import com.myorganization.app.exception.UserException;
 import com.myorganization.app.model.Post;
 
-import java.util.List;
-
 public interface PostService {
 
     Post getPostById(long id, long currentUserId) throws UserException, AccessDeniedException;

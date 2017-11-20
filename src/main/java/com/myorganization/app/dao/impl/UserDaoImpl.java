@@ -1,9 +1,12 @@
 package com.myorganization.app.dao.impl;
 
 import com.myorganization.app.dao.UserDao;
+import com.myorganization.app.model.Post;
 import com.myorganization.app.model.User;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class UserDaoImpl implements UserDao {
@@ -20,8 +23,14 @@ public class UserDaoImpl implements UserDao {
         return id;
     }
 
+    @Override
     public User getUserById(long id) {
         return users.get(id);
+    }
+
+    @Override
+    public List<User> getAllUsers() {
+        return new ArrayList<>(users.values());
     }
 
     @Override
