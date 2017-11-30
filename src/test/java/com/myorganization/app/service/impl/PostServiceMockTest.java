@@ -116,7 +116,7 @@ public class PostServiceMockTest {
         try {
             postService.createPost(post, currentUserId);
             Assert.fail();
-        } catch(final AccessDeniedException ex) {
+         } catch(final AccessDeniedException ex) {
             Assert.assertTrue("User don't have right to write posts".equals(ex.getMessage()));
             contextForInterface.assertIsSatisfied();
         }
