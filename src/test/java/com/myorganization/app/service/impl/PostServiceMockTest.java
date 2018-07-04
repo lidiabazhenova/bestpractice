@@ -28,11 +28,14 @@ public class PostServiceMockTest {
 
     @Before
     public void setUp() throws Exception {
+        // создаем объект для мокирования интерфейсов
         contextForInterface = new Mockery();
 
+        // мокируем интерфейсы
         userDaoMock = contextForInterface.mock(UserDao.class);
         postDaoMock = contextForInterface.mock(PostDao.class);
 
+        //передаем в postservice моки
         postService = new PostServiceImpl(postDaoMock, userDaoMock);
     }
 
@@ -47,12 +50,15 @@ public class PostServiceMockTest {
 
         contextForInterface.checking(
                 new Expectations() {{
+                    //подменяем вызовы
                     oneOf(userDaoMock).getUserById(user.getId()); will(returnValue(user));
                     oneOf(postDaoMock).getPostById(post.getId()); will(returnValue(post));
                 }});
 
         Post storedPost = postService.getPostById(post.getId(), currentUserId);
         Assert.assertTrue(post.equals(storedPost));
+
+        // проверка что моки были вызваны
         contextForInterface.assertIsSatisfied();
     }
 
